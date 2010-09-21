@@ -4,13 +4,15 @@ exports.hello = function(){
   return 'hello world';
 };
 
-exports.asyncHello = function(res, callback){
+exports.asyncHello = function(){
+  var args = Array.prototype.slice.call(arguments),
+      callback = args.pop();
+    
   setTimeout(function(){
     console.log('hello world');
     if(typeof callback == 'function'){
       // callback is going to return a value. if we wanted to continue the chain here, we could pass res
-      var result = callback();
-      res.send(200, {'Content-Type': 'application/json'}, JSON.stringify(result));
+      callback(null, 'hello world');
     }
-  }, 3000);
+  }, 100);
 }
