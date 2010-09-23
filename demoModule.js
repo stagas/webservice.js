@@ -14,5 +14,5 @@ exports.asyncHello = function(){
       // callback is going to return a value. if we wanted to continue the chain here, we could pass res
       callback(null, 'hello world');
     }
-  }, 100);
+  }, 1000);
 }

@@ -26,6 +26,7 @@ webservice.createServer({
   'fs': {
     module: fs,
     views: common
+    // async is default
   },
   'sys': {
     module: sys,
