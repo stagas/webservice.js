@@ -21,7 +21,7 @@ var common = {
   }
 }
 
-webservice.createServer({
+webservice.createServer(this, {
   'demoModule': {
     module: demoModule,
     views: common,
@@ -40,6 +40,19 @@ webservice.createServer({
     module: sys,
     views: common,
     sync: true
+  },
+  'echo': {
+    module: {
+      eval: function(input, callback) {
+        if (callback) callback(null, eval(input));
+        else return eval(input);
+      },
+      raw: function(input, callback) {
+        if (callback) callback(null, input);
+        else return input;
+      }
+    },
+    views: common
   }
 }).listen(8080);
 
